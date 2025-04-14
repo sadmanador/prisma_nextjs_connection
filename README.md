@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Prisma setup in a project
 
-## Getting Started
 
-First, run the development server:
-
+make a package.json
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm init -y
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## install packages
+npm i --save-dev prisma typescript ts-node @types/node nodemon @prisma/client
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Make a tsconfig.ts
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "./dist",
+    "strict": true,
+    "lib": ["esnext"],
+    "esModuleInterop": true
+  }
+}
 
-## Learn More
+## initiate the prisma
+npx prisma init --datasource-provider postgresql
+it will make a prisma dir
 
-To learn more about Next.js, take a look at the following resources:
+## make a model
+model User{
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+}
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## make the migration of the model to prisma
+npx prisma migrate dev --name init
+init is the name of the migration
 
-## Deploy on Vercel
+## make sure to make crud api routes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## generate the client
+npx prisma generate
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## if schema is changed then use this to apply the change
+npx prisma db push
+
+
+
+
