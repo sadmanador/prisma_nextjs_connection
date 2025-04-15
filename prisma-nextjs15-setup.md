@@ -22,7 +22,7 @@ Choose:
 ## 📦 2. Install Dependencies
 
 ```bash
-npm install prisma @prisma/client
+npm install prisma @prisma/client &&
 npm install --save-dev ts-node
 ```
 
@@ -138,6 +138,7 @@ export async function POST() {
 Start your dev server:
 
 ```bash
+npm install @prisma/client prisma
 npm run dev
 ```
 
